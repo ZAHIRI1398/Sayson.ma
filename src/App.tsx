@@ -4,8 +4,10 @@ import './App.css'
 
 type Product = { name: string; ref: string; category: string; material: string; dimensions: string; image: string; tone: string; price: string }
 const products: Product[] = [
-  { name: 'Cotillon rouge', ref: 'CO-001', category: 'Cotillons', material: 'Verre', dimensions: 'Ø 6 à 20 cm', image: '/images/vase.jpg', tone: 'Rouge', price: 'À partir de 12 €' },
-  { name: 'Boules de Noël assorties', ref: 'CO-002', category: 'Cotillons', material: 'Verre', dimensions: 'Pack 50 pièces', image: '/images/cotillons2.jpg', tone: 'Rouge / bordeaux', price: 'À partir de 120 €' },
+  { name: 'Boules de Noël blanches', ref: 'CO-001', category: 'Cotillons', material: 'Verre', dimensions: 'Ø 4 à 20 cm', image: '/images/cotillons1.jpg', tone: 'Blanc', price: 'À partir de 3,50 €' },
+  { name: 'Boules de Noël rouge', ref: 'CO-002', category: 'Cotillons', material: 'Verre', dimensions: '6 à 20 cm — packs 12 à 50 pcs', image: '/images/cotillons2.jpg', tone: 'Rouge / bordeaux', price: 'À partir de 3,50 €' },
+  { name: 'Boules de Noël dorées', ref: 'CO-003', category: 'Cotillons', material: 'Verre', dimensions: 'Ø 6 à 20 cm', image: '/images/cottillon3.jpg', tone: 'Or / champagne', price: 'À partir de 12 €' },
+  { name: 'Boules de Noël XXL', ref: 'CO-004', category: 'Cotillons', material: 'Verre / PVC', dimensions: 'Sur mesure', image: '/images/cotillons4.png', tone: 'Rouge shiny', price: 'Sur devis' },
   { name: 'Sapin bleu prestige', ref: 'SA-001', category: 'Sapins', material: 'PVC premium', dimensions: 'H 300 cm', image: '/images/hero-lobby.jpg', tone: 'Bleu / argent', price: 'Sur devis' },
   { name: 'Sapin blanc royal', ref: 'SA-002', category: 'Sapins', material: 'Mélange PE', dimensions: 'H 270 cm', image: '/images/inspiration.jpg', tone: 'Blanc / or', price: 'Sur devis' },
   { name: 'Sapin doré tradition', ref: 'SA-003', category: 'Sapins', material: 'PVC', dimensions: 'H 250 cm', image: '/images/image2.jpg', tone: 'Vert / or', price: 'Sur devis' },
@@ -61,9 +63,9 @@ function App() {
       {filtered.length === 0 && <div className="empty"><X size={19}/><p>Aucune pièce ne correspond à votre recherche.</p></div>}
       <button className="all-products" onClick={() => { setActiveCategory('Cotillons'); setQuery('') }}>Voir tous les catalogues <ArrowRight size={16}/></button>
     </section>
-    <section className="inspiration" id="inspirations"><div className="inspiration-image"><img src="/images/inspiration.jpg" alt="Chambre d'hôtel dans les tons beiges"/><span>Projet — Maison Céleste, Paris</span></div><div className="inspiration-copy"><p className="eyebrow">Inspirations</p><h2>Imaginer<br/><i>l’exception.</i></h2><p>Du lobby au dernier étage, découvrez comment nos pièces prennent vie dans des adresses qui cultivent l’art du détail.</p><a className="text-link" href="#contact">Voir les réalisations <ArrowRight size={15}/></a><div className="quote">“ Une atmosphère juste, c’est avant tout une émotion qui reste. ”<small>— Direction artistique Atelier Hôtels</small></div></div></section>
+    <section className="inspiration" id="inspirations"><div className="inspiration-image"><img src="/images/inspiration.jpg" alt="Chambre d'hôtel dans les tons beiges"/><span>Projet — Tanger</span></div><div className="inspiration-copy"><p className="eyebrow">Inspirations</p><h2>Imaginer<br/><i>l’exception.</i></h2><p>Du lobby au dernier étage, découvrez comment nos pièces prennent vie dans des adresses qui cultivent l’art du détail.</p><a className="text-link" href="#contact">Voir les réalisations <ArrowRight size={15}/></a><div className="quote">“ Une atmosphère juste, c’est avant tout une émotion qui reste. ”<small>— Direction artistique Atelier Hôtels</small></div></div></section>
     <section className="contact" id="contact"><p className="eyebrow light">Un projet en tête ?</p><h2>Parlons de vos <i>espaces.</i></h2><a href="mailto:sayzon2025@gmail.com" className="button-light">Nous contacter <ArrowRight size={16}/></a></section>
-    <footer><a className="brand" href="#accueil"><img src="/images/logo.png" alt="Atelier Hôtels" /></a><p>Objets et mobilier pour l’hospitalité contemporaine.</p><span>© 2025 Atelier Hôtels</span></footer>
+    <footer><a className="brand" href="#accueil"><img src="/images/logo.png" alt="Sayzon Design -Decor" /></a><p>Objets et mobilier pour l’hospitalité contemporaine.</p><span>© 2025 Sayzon Design-Decor</span></footer>
   </main>
 }
 
