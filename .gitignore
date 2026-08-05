@@ -25,5 +25,5 @@ dist-ssr
 .vite-source-tags.js
 .vercel
 
-# Large PDF catalogue (keep local, host elsewhere)
-public/catalogue.pdf
+# Large PDF catalogues (keep local, host elsewhere)
+public/catalogue*.pdf

@@ -4,24 +4,67 @@ import './App.css'
 
 type Product = { name: string; ref: string; category: string; material: string; dimensions: string; image: string; tone: string; price: string }
 const products: Product[] = [
-  { name: 'cotillon', ref: 'AT-041', category: 'Objets & vases', material: 'bleu', dimensions: 'Ø 28 × H 42 cm', image: '/images/vase.jpg', tone: '', price: 'À partir de €' },
-  { name: 'Lampe Noma', ref: 'NO-118', category: 'Luminaires', material: 'Travertin & lin', dimensions: 'Ø 38 × H 63 cm', image: '/images/lamp.jpg', tone: '', price: 'À partir de  €' },
-  { name: 'Écrin Toba', ref: 'TO-073', category: 'Objets & vases', material: 'Bois de chêne fumé', dimensions: 'L 34 × P 20 × H 12 cm', image: '/images/image1.jpg', tone: 'Brun fumé', price: 'À partir de  €' },
-  { name: 'Composition Céleste', ref: 'CE-206', category: 'Art mural', material: 'Plâtre minéral', dimensions: 'L 90 × H 120 cm', image: '/images/image2.jpg', tone: 'Craie chaude', price: 'Sur devis' },
+  { name: 'Cotillon rouge', ref: 'CO-001', category: 'Cotillons', material: 'Verre', dimensions: 'Ø 6 à 20 cm', image: '/images/vase.jpg', tone: 'Rouge', price: 'À partir de 12 €' },
+  { name: 'Boules de Noël assorties', ref: 'CO-002', category: 'Cotillons', material: 'Verre', dimensions: 'Pack 50 pièces', image: '/images/cotillons2.jpg', tone: 'Rouge / bordeaux', price: 'À partir de 120 €' },
+  { name: 'Sapin bleu prestige', ref: 'SA-001', category: 'Sapins', material: 'PVC premium', dimensions: 'H 300 cm', image: '/images/hero-lobby.jpg', tone: 'Bleu / argent', price: 'Sur devis' },
+  { name: 'Sapin blanc royal', ref: 'SA-002', category: 'Sapins', material: 'Mélange PE', dimensions: 'H 270 cm', image: '/images/inspiration.jpg', tone: 'Blanc / or', price: 'Sur devis' },
+  { name: 'Sapin doré tradition', ref: 'SA-003', category: 'Sapins', material: 'PVC', dimensions: 'H 250 cm', image: '/images/image2.jpg', tone: 'Vert / or', price: 'Sur devis' },
+  { name: 'Arche de Noël sur mesure', ref: 'PR-001', category: 'Professionnels', material: 'Boules et structure', dimensions: 'Sur mesure', image: '/images/image1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
+  { name: 'Installation hôtellerie', ref: 'PR-002', category: 'Professionnels', material: 'Forfait clé en main', dimensions: 'À l’échelle', image: '/images/vase2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
 ]
-const categories = ['Tout le catalogue', 'Luminaires', 'Objets & vases', 'Art mural', 'Textiles', 'Mobilier d’appoint']
+const categories = ['Cotillons', 'Sapins', 'Professionnels']
+const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Professionnels': 'Catalogue 3' }
+const catalogPdfs: Record<string, string> = { 'Cotillons': '/catalogue1.pdf', 'Sapins': '/catalogue2.pdf', 'Professionnels': '/catalogue3.pdf' }
 
 function App() {
-  const [query, setQuery] = useState(''); const [activeCategory, setActiveCategory] = useState('Tout le catalogue'); const [filterOpen, setFilterOpen] = useState(false); const [menuOpen, setMenuOpen] = useState(false); const [saved, setSaved] = useState<string[]>([])
-  const filtered = useMemo(() => products.filter((p) => (activeCategory === 'Tout le catalogue' || p.category === activeCategory) && `${p.name} ${p.material} ${p.ref}`.toLowerCase().includes(query.toLowerCase())), [query, activeCategory])
+  const [query, setQuery] = useState('')
+  const [activeCategory, setActiveCategory] = useState('Cotillons')
+  const [filterOpen, setFilterOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [saved, setSaved] = useState<string[]>([])
+
+  const filtered = useMemo(() => products.filter((p) => p.category === activeCategory && `${p.name} ${p.material} ${p.ref}`.toLowerCase().includes(query.toLowerCase())), [query, activeCategory])
   const toggleSaved = (ref: string) => setSaved((current) => current.includes(ref) ? current.filter((x) => x !== ref) : [...current, ref])
+  const openCatalog = (cat: string) => { setActiveCategory(cat); document.getElementById('catalogue')?.scrollIntoView({ behavior: 'smooth' }) }
+
   return <main>
-    <header className="topbar"><a className="brand" href="#accueil"><img src="/images/logo.png" alt="SAYZON" /><span className="brand-name">SAYZON <span>Design-Decor</span></span></a><nav className={menuOpen ? 'open' : ''}><a href="#catalogue">Cotillons</a><a href="#inspirations">Sapins</a><a href="#services">Professionnels</a><a href="#contact">Contact</a></nav><div className="header-actions"><button className="language">FR <ChevronDown size={13}/></button><button className="menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu"><Menu size={23}/></button><a href="#catalogue" className="catalogue-link">Voir le catalogue <ArrowRight size={15}/></a></div></header>
-    <section className="hero" id="accueil"><img src="/images/hero-lobby.jpg" alt="Lobby d'hôtel raffiné"/><div className="hero-shade"/><div className="hero-copy"><p className="eyebrow light">Collection 2025 — Hôtellerie</p><h1>L’art de recevoir,<br/><i>sans compromis.</i></h1><p className="hero-text">Des objets singuliers et durables pour imaginer des lieux d’hospitalité à votre image.</p><a href="#catalogue" className="button-light">Explorer la collection <ArrowRight size={16}/></a></div><div className="hero-index"><span>01</span><div/><span>04</span></div></section>
+    <header className="topbar">
+      <a className="brand" href="#accueil"><img src="/images/logo.png" alt="SAYZON" /><span className="brand-name">SAYZON <span>Design-Decor</span></span></a>
+      <nav className={menuOpen ? 'open' : ''}>
+        <a href="#catalogue" onClick={() => openCatalog('Cotillons')}>Cotillons</a>
+        <a href="#catalogue" onClick={() => openCatalog('Sapins')}>Sapins</a>
+        <a href="#catalogue" onClick={() => openCatalog('Professionnels')}>Professionnels</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div className="header-actions">
+        <button className="language">FR <ChevronDown size={13}/></button>
+        <button className="menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu"><Menu size={23}/></button>
+        <a href="#catalogue" onClick={() => openCatalog('Cotillons')} className="catalogue-link">Voir le catalogue <ArrowRight size={15}/></a>
+      </div>
+    </header>
+    <section className="hero" id="accueil"><img src="/images/hero-lobby.jpg" alt="Sapin décoré"/><div className="hero-shade"/><div className="hero-copy"><p className="eyebrow light">Collection 2025 — Hôtellerie</p><h1>L’art de recevoir,<br/><i>sans compromis.</i></h1><p className="hero-text">Des objets singuliers et durables pour imaginer des lieux d’hospitalité à votre image.</p><a href="#catalogue" onClick={() => openCatalog('Cotillons')} className="button-light">Explorer la collection <ArrowRight size={16}/></a></div><div className="hero-index"><span>01</span><div/><span>04</span></div></section>
     <section className="intro" id="services"><p className="eyebrow">Notre parti pris</p><h2>Une décoration qui donne<br/>une âme aux lieux.</h2><div className="intro-bottom"><p>Nous sélectionnons et composons des collections pensées pour l’hôtellerie contemporaine : matières tactiles, lignes intemporelles et détails qui font la différence.</p><a href="#contact" className="text-link">Découvrir notre savoir-faire <ArrowRight size={15}/></a></div></section>
-    <section className="catalogue" id="catalogue"><div className="section-heading"><div><p className="eyebrow">Le catalogue</p><h2>Pièces choisies</h2></div><a className="download" href="/catalogue.pdf" download="catalogue-atelier-hotels.pdf"><ArrowDownToLine size={17}/> Télécharger le PDF</a></div><div className="browse"><div className="categories">{categories.map((c) => <button key={c} className={activeCategory === c ? 'active' : ''} onClick={() => setActiveCategory(c)}>{c}</button>)}</div><div className="search-row"><label><Search size={18}/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Rechercher une référence, une matière…"/></label><button className={filterOpen ? 'filter active-filter' : 'filter'} onClick={() => setFilterOpen(!filterOpen)}><SlidersHorizontal size={17}/> Filtres</button></div></div>{filterOpen && <div className="filter-panel"><span>Matériaux</span><button>Bois</button><button>Céramique</button><button>Minéral</button><button>Textile</button><span className="filter-note"><Check size={15}/> Disponible sous 4 à 6 semaines</span></div>}<div className="products">{filtered.map((p) => <article className="product" key={p.ref}><div className="product-image"><img src={p.image} alt={p.name}/><button aria-label="Ajouter aux favoris" onClick={() => toggleSaved(p.ref)} className={saved.includes(p.ref) ? 'hearted' : ''}><Heart size={18} fill={saved.includes(p.ref) ? 'currentColor' : 'none'}/></button><span>{p.tone}</span></div><div className="product-meta"><div><p className="reference">{p.ref} · {p.category}</p><h3>{p.name}</h3></div><p className="price">{p.price}</p></div><p className="spec">{p.material} <b>—</b> {p.dimensions}</p></article>)}</div>{filtered.length === 0 && <div className="empty"><X size={19}/><p>Aucune pièce ne correspond à votre recherche.</p></div>}<button className="all-products" onClick={() => { setActiveCategory('Tout le catalogue'); setQuery('') }}>Voir toutes les pièces <ArrowRight size={16}/></button></section>
+    <section className="catalogue" id="catalogue">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">Le catalogue</p>
+          <h2>{catalogTitles[activeCategory]}</h2>
+        </div>
+        <a className="download" href={catalogPdfs[activeCategory]} download={catalogPdfs[activeCategory].replace('/', '')}><ArrowDownToLine size={17}/> Télécharger le PDF</a>
+      </div>
+      <div className="browse">
+        <div className="categories">{categories.map((c) => <button key={c} className={activeCategory === c ? 'active' : ''} onClick={() => setActiveCategory(c)}>{c}</button>)}</div>
+        <div className="search-row"><label><Search size={18}/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Rechercher une référence, une matière…"/></label><button className={filterOpen ? 'filter active-filter' : 'filter'} onClick={() => setFilterOpen(!filterOpen)}><SlidersHorizontal size={17}/> Filtres</button></div>
+      </div>
+      {filterOpen && <div className="filter-panel"><span>Matériaux</span><button>Bois</button><button>Céramique</button><button>Minéral</button><button>Textile</button><span className="filter-note"><Check size={15}/> Disponible sous 4 à 6 semaines</span></div>}
+      <div className="products">{filtered.map((p) => <article className="product" key={p.ref}><div className="product-image"><img src={p.image} alt={p.name}/><button aria-label="Ajouter aux favoris" onClick={() => toggleSaved(p.ref)} className={saved.includes(p.ref) ? 'hearted' : ''}><Heart size={18} fill={saved.includes(p.ref) ? 'currentColor' : 'none'}/></button><span>{p.tone}</span></div><div className="product-meta"><div><p className="reference">{p.ref} · {p.category}</p><h3>{p.name}</h3></div><p className="price">{p.price}</p></div><p className="spec">{p.material} <b>—</b> {p.dimensions}</p></article>)}</div>
+      {filtered.length === 0 && <div className="empty"><X size={19}/><p>Aucune pièce ne correspond à votre recherche.</p></div>}
+      <button className="all-products" onClick={() => { setActiveCategory('Cotillons'); setQuery('') }}>Voir tous les catalogues <ArrowRight size={16}/></button>
+    </section>
     <section className="inspiration" id="inspirations"><div className="inspiration-image"><img src="/images/inspiration.jpg" alt="Chambre d'hôtel dans les tons beiges"/><span>Projet — Maison Céleste, Paris</span></div><div className="inspiration-copy"><p className="eyebrow">Inspirations</p><h2>Imaginer<br/><i>l’exception.</i></h2><p>Du lobby au dernier étage, découvrez comment nos pièces prennent vie dans des adresses qui cultivent l’art du détail.</p><a className="text-link" href="#contact">Voir les réalisations <ArrowRight size={15}/></a><div className="quote">“ Une atmosphère juste, c’est avant tout une émotion qui reste. ”<small>— Direction artistique Atelier Hôtels</small></div></div></section>
-    <section className="contact" id="contact"><p className="eyebrow light">Un projet en tête ?</p><h2>Parlons de vos <i>espaces.</i></h2><a href="mailto:sayzon2025@gmail.com" className="button-light">Nous contacter <ArrowRight size={16}/></a></section><footer><a className="brand" href="#accueil"><img src="/images/logo.png" alt="Atelier Hôtels" /></a><p>Objets et mobilier pour l’hospitalité contemporaine.</p><span>© 2025 Atelier Hôtels</span></footer>
+    <section className="contact" id="contact"><p className="eyebrow light">Un projet en tête ?</p><h2>Parlons de vos <i>espaces.</i></h2><a href="mailto:sayzon2025@gmail.com" className="button-light">Nous contacter <ArrowRight size={16}/></a></section>
+    <footer><a className="brand" href="#accueil"><img src="/images/logo.png" alt="Atelier Hôtels" /></a><p>Objets et mobilier pour l’hospitalité contemporaine.</p><span>© 2025 Atelier Hôtels</span></footer>
   </main>
 }
+
 export default App
