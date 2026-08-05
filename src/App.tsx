@@ -8,11 +8,14 @@ const products: Product[] = [
   { name: 'Boules de Noël rouge', ref: 'CO-002', category: 'Cotillons', material: 'Verre', dimensions: '6 à 20 cm — packs 12 à 50 pcs', image: '/images/cotillons2.jpg', tone: 'Rouge / bordeaux', price: 'À partir de 3,50 €' },
   { name: 'Boules de Noël dorées', ref: 'CO-003', category: 'Cotillons', material: 'Verre', dimensions: 'Ø 6 à 20 cm', image: '/images/cottillon3.jpg', tone: 'Or / champagne', price: 'À partir de 12 €' },
   { name: 'Boules de Noël XXL', ref: 'CO-004', category: 'Cotillons', material: 'Verre / PVC', dimensions: 'Sur mesure', image: '/images/cotillons4.png', tone: 'Rouge shiny', price: 'Sur devis' },
-  { name: 'Sapin bleu prestige', ref: 'SA-001', category: 'Sapins', material: 'PVC premium', dimensions: 'H 300 cm', image: '/images/hero-lobby.jpg', tone: 'Bleu / argent', price: 'Sur devis' },
-  { name: 'Sapin blanc royal', ref: 'SA-002', category: 'Sapins', material: 'Mélange PE', dimensions: 'H 270 cm', image: '/images/inspiration.jpg', tone: 'Blanc / or', price: 'Sur devis' },
-  { name: 'Sapin doré tradition', ref: 'SA-003', category: 'Sapins', material: 'PVC', dimensions: 'H 250 cm', image: '/images/image2.jpg', tone: 'Vert / or', price: 'Sur devis' },
-  { name: 'Arche de Noël sur mesure', ref: 'PR-001', category: 'Professionnels', material: 'Boules et structure', dimensions: 'Sur mesure', image: '/images/image1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
-  { name: 'Installation hôtellerie', ref: 'PR-002', category: 'Professionnels', material: 'Forfait clé en main', dimensions: 'À l’échelle', image: '/images/vase2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
+  { name: 'Sapin premium naturel', ref: 'SA-001', category: 'Sapins', material: 'PVC premium', dimensions: 'H 210 cm', image: '/images/sapin1.jpg', tone: 'Vert naturel', price: 'Sur devis' },
+  { name: 'Sapin blanc lumineux', ref: 'SA-002', category: 'Sapins', material: 'Mélange PE', dimensions: 'H 240 cm', image: '/images/sapin2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
+  { name: 'Sapin doré impérial', ref: 'SA-003', category: 'Sapins', material: 'PVC', dimensions: 'H 300 cm', image: '/images/sapin3.jpg', tone: 'Or / champagne', price: 'Sur devis' },
+  { name: 'Sapin décoré sur mesure', ref: 'SA-004', category: 'Sapins', material: 'PVC / PE', dimensions: 'H 250+ cm', image: '/images/sapin4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Arche de Noël sur mesure', ref: 'PR-001', category: 'Professionnels', material: 'Boules et structure', dimensions: 'Sur mesure', image: '/images/profess1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
+  { name: 'Installation hôtellerie', ref: 'PR-002', category: 'Professionnels', material: 'Forfait clé en main', dimensions: 'À l’échelle', image: '/images/profess2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
+  { name: 'Décoration commerciale', ref: 'PR-003', category: 'Professionnels', material: 'Pack sur mesure', dimensions: 'À l’échelle', image: '/images/profess3.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Pack clé en main', ref: 'PR-004', category: 'Professionnels', material: 'Forfait complet', dimensions: 'Sur mesure', image: '/images/profess4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
 ]
 const categories = ['Cotillons', 'Sapins', 'Professionnels']
 const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Professionnels': 'Catalogue 3' }
