@@ -13,17 +13,21 @@ const CATALOGUE_FILES: Record<string, string> = {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    if (!env.CATALOGUES) {
+      return new Response('Liaison R2 CATALOGUES non configurée', { status: 500 });
+    }
+
     const url = new URL(request.url);
     const objectKey = CATALOGUE_FILES[url.pathname];
 
     if (objectKey) {
       const object = await env.CATALOGUES.get(objectKey);
-      if (!object) {
-        return new Response('Catalogue non trouvé', { status: 404 });
+      if (!object || !object.body) {
+        return new Response('Catalogue non trouvé dans R2', { status: 404 });
       }
 
       const headers = new Headers();
-      headers.set('Content-Type', 'application/pdf');
+      object.writeHttpMetadata(headers);
       headers.set('Content-Disposition', `attachment; filename="${objectKey}"`);
       headers.set('Access-Control-Allow-Origin', '*');
 
@@ -31,11 +35,13 @@ export default {
         headers.set('Content-Length', object.size.toString());
       }
 
-      // L'objet R2 body est un ReadableStream<Uint8Array> ou null
       return new Response(object.body, { headers });
     }
 
-    // Pour toutes les autres routes, servir les assets statiques (Vite dist)
+    if (!env.ASSETS) {
+      return new Response('Aucun asset statique configuré', { status: 500 });
+    }
+
     return env.ASSETS.fetch(request);
   },
 };
