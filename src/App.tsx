@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ArrowDownToLine, ArrowRight, Check, ChevronDown, Heart, Menu, Search, SlidersHorizontal, X } from 'lucide-react'
+import { ArrowDownToLine, ArrowRight, Check, ChevronDown, ChevronLeft, ChevronRight, Heart, Menu, Search, SlidersHorizontal, X } from 'lucide-react'
 import './App.css'
 
 type Product = { name: string; ref: string; category: string; material: string; dimensions: string; image: string; tone: string; price: string }
@@ -18,6 +18,7 @@ const products: Product[] = [
   { name: 'Pack clé en main', ref: 'PR-004', category: 'Accessoires', material: 'Forfait complet', dimensions: 'Sur mesure', image: '/images/profess4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
 ]
 const categories = ['Cotillons', 'Sapins', 'Accessoires']
+const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
 const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Accessoires': 'Catalogue 3' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
 const catalogueFiles: Record<string, string> = { 'Cotillons': 'catalogue1.pdf', 'Sapins': 'catalogue2.pdf', 'Accessoires': 'catalogue3.pdf' }
@@ -29,6 +30,13 @@ function App() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [saved, setSaved] = useState<string[]>([])
+  const [realisationIndex, setRealisationIndex] = useState(-1)
+
+  const currentRealisation = realisationIndex === -1 ? '/images/inspiration.jpg' : realisations[realisationIndex]
+  const realisationLabel = realisationIndex === -1 ? 'Projet — Tanger' : `Réalisation ${realisationIndex + 1} / ${realisations.length}`
+  const showNextRealisation = () => setRealisationIndex((i) => (i + 1) % realisations.length)
+  const showPrevRealisation = () => setRealisationIndex((i) => i === -1 ? realisations.length - 1 : (i - 1 + realisations.length) % realisations.length)
+  const scrollToInspirations = () => document.getElementById('inspirations')?.scrollIntoView({ behavior: 'smooth' })
 
   const filtered = useMemo(() => products.filter((p) => p.category === activeCategory && `${p.name} ${p.material} ${p.ref}`.toLowerCase().includes(query.toLowerCase())), [query, activeCategory])
   const toggleSaved = (ref: string) => setSaved((current) => current.includes(ref) ? current.filter((x) => x !== ref) : [...current, ref])
@@ -50,7 +58,7 @@ function App() {
       </div>
     </header>
     <section className="hero" id="accueil"><img src="/images/hero-lobby.jpg" alt="Sapin décoré"/><div className="hero-shade"/><div className="hero-copy"><p className="eyebrow light">Collection 2026 — Hôtellerie</p><h1>Tendances déco Noël 2026 : les styles, couleurs et sapins qui vont faire sensation</h1><p className="hero-text">Des objets singuliers et durables pour imaginer des lieux d’hospitalité à votre image.</p><a href="#catalogue" onClick={() => openCatalog('Cotillons')} className="button-light">Explorer la collection <ArrowRight size={16}/></a></div><div className="hero-index"><span>01</span><div/><span>04</span></div></section>
-    <section className="intro" id="services"><p className="eyebrow">Notre parti pris</p><h2>Une décoration qui donne<br/>une âme aux lieux.</h2><div className="intro-bottom"><p className="intro-columns">À vos envies sur le thème que vous voulez présenter cette année :<br/>- Sapins décorés traditionnels doré, rouge<br/>- Sapins décorés dans les tons rosé, nacré, + une autre couleur de votre choix<br/>- Thème automnal avec des couleurs variées comme marron, brun, vert<br/>- Thème glace argenté, blanc, transparent<br/>- Thème bleu avec une palette de plusieurs tons.<br/><br/>Accompagnés de branches, guirlandes et figurines, qui s'intègrent dans le thème choisi.<br/><br/>Vous pouvez choisir vous-même tous les articles, ou comme l'année précédente,<br/>optez pour le pack pour le sapin de 8 mètres (ce qui représente environ 800 à 1200<br/>pièces, tout confondu, selon la taille des articles).<br/><br/>Nous avons également des objets de grande taille comme des cerfs en cuivre doré,<br/>paons pour vos lobbys, paqutes cadeaux au pieds du sapin...</p><a href="#contact" className="text-link">Découvrir notre savoir-faire <ArrowRight size={15}/></a></div></section>
+    <section className="intro" id="services"><p className="eyebrow">Notre parti pris</p><h2>Une décoration qui donne<br/>une âme aux lieux.</h2><div className="intro-bottom"><p className="intro-columns">À vos envies sur le thème que vous voulez présenter cette année :<br/>- Sapins décorés traditionnels doré, rouge<br/>- Sapins décorés dans les tons rosé, nacré, + une autre couleur de votre choix<br/>- Thème automnal avec des couleurs variées comme marron, brun, vert<br/>- Thème glace argenté, blanc, transparent<br/>- Thème bleu avec une palette de plusieurs tons.<br/><br/>Accompagnés de branches, guirlandes et figurines, qui s'intègrent dans le thème choisi.<br/><br/>Vous pouvez choisir vous-même tous les articles, ou comme l'année précédente,<br/>optez pour le pack pour le sapin de 8 mètres (ce qui représente environ 800 à 1200<br/>pièces, tout confondu, selon la taille des articles).<br/><br/>Nous avons également des objets de grande taille comme des cerfs en cuivre doré,<br/>paons pour vos lobbys, paqutes cadeaux au pieds du sapin...</p><a href="#inspirations" className="text-link" onClick={(e) => { e.preventDefault(); showNextRealisation(); scrollToInspirations() }}>Découvrir notre savoir-faire <ArrowRight size={15}/></a></div></section>
     <section className="catalogue" id="catalogue">
       <div className="section-heading">
         <div>
@@ -68,7 +76,7 @@ function App() {
       {filtered.length === 0 && <div className="empty"><X size={19}/><p>Aucune pièce ne correspond à votre recherche.</p></div>}
       <button className="all-products" onClick={() => { setActiveCategory('Cotillons'); setQuery('') }}>Voir tous les catalogues <ArrowRight size={16}/></button>
     </section>
-    <section className="inspiration" id="inspirations"><div className="inspiration-image"><img src="/images/inspiration.jpg" alt="Chambre d'hôtel dans les tons beiges"/><span>Projet — Tanger</span></div><div className="inspiration-copy"><p className="eyebrow">Inspirations</p><h2>Imaginer<br/><i>l’exception.</i></h2><p>Pour sublimer votre sapin cette année, nous avons énormément de choix de thèmes de décorations. Les couleurs des boules, branches et figurines sont particulièrement variables cette année.</p><a className="text-link" href="#contact">Voir les réalisations <ArrowRight size={15}/></a><div className="quote">“ Une atmosphère juste, c’est avant tout une émotion qui reste. ”<small>— Direction artistique Atelier Hôtels</small></div></div></section>
+    <section className="inspiration" id="inspirations"><div className="inspiration-image"><img src={currentRealisation} alt={realisationLabel}/><span>{realisationLabel}</span><button className="gallery-arrow gallery-arrow-left" onClick={showPrevRealisation} aria-label="Précédent"><ChevronLeft size={26}/></button><button className="gallery-arrow gallery-arrow-right" onClick={showNextRealisation} aria-label="Suivant"><ChevronRight size={26}/></button><div className="gallery-counter">{realisationIndex === -1 ? '0' : realisationIndex + 1} / {realisations.length}</div></div><div className="inspiration-copy"><p className="eyebrow">Inspirations</p><h2>Imaginer<br/><i>l’exception.</i></h2><p>Pour sublimer votre sapin cette année, nous avons énormément de choix de thèmes de décorations. Les couleurs des boules, branches et figurines sont particulièrement variables cette année.</p><a className="text-link" href="#inspirations" onClick={(e) => { e.preventDefault(); showNextRealisation() }}>Voir les réalisations <ArrowRight size={15}/></a><div className="quote">“ Une atmosphère juste, c’est avant tout une émotion qui reste. ”<small>— Direction artistique Atelier Hôtels</small></div></div></section>
     <section className="contact" id="contact"><p className="eyebrow light">Un projet en tête ?</p><h2>Parlons de vos <i>espaces.</i></h2><a href="mailto:sayzon2025@gmail.com" className="button-light">Nous contacter <ArrowRight size={16}/></a></section>
     <footer><a className="brand" href="#accueil"><img src="/images/logo.png" alt="Sayzon Design -Decor" /></a><p>Objets et mobilier pour l’hospitalité contemporaine.</p><span>© 2025 Sayzon Design-Decor</span></footer>
   </main>

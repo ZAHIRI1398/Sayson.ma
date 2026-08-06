@@ -7,3 +7,5 @@
 
 .intro-bottom p.intro-columns{flex:1;max-width:none;columns:2;column-gap:2.5rem;font-size:1.05rem;line-height:1.65;color:#524f47}
 @media(max-width:850px){.intro-bottom p.intro-columns{columns:1}}
+
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(247,245,240,.85);border:0;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#3c3a34;cursor:pointer;transition:background .2s;z-index:3}.gallery-arrow:hover{background:#f7f5f0}.gallery-arrow-left{left:18px}.gallery-arrow-right{right:18px}.gallery-counter{position:absolute;bottom:23px;right:25px;background:rgba(20,19,16,.5);color:#fff;font:10px 'DM Mono';letter-spacing:.06em;padding:6px 10px;border-radius:2px;z-index:3}@media(max-width:850px){.gallery-arrow{width:38px;height:38px}.gallery-arrow-left{left:10px}.gallery-arrow-right{right:10px}}
