@@ -12,14 +12,14 @@ const products: Product[] = [
   { name: 'Sapin blanc lumineux', ref: 'SA-002', category: 'Sapins', material: 'Mélange PE', dimensions: 'H 240 cm', image: '/images/sapin2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
   { name: 'Sapin doré impérial', ref: 'SA-003', category: 'Sapins', material: 'PVC', dimensions: 'H 300 cm', image: '/images/sapin3.jpg', tone: 'Or / champagne', price: 'Sur devis' },
   { name: 'Sapin décoré sur mesure', ref: 'SA-004', category: 'Sapins', material: 'PVC / PE', dimensions: 'H 250+ cm', image: '/images/sapin4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
-  { name: 'Arche de Noël sur mesure', ref: 'PR-001', category: 'Professionnels', material: 'Boules et structure', dimensions: 'Sur mesure', image: '/images/profess1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
-  { name: 'Installation hôtellerie', ref: 'PR-002', category: 'Professionnels', material: 'Forfait clé en main', dimensions: 'À l’échelle', image: '/images/profess2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
-  { name: 'Décoration commerciale', ref: 'PR-003', category: 'Professionnels', material: 'Pack sur mesure', dimensions: 'À l’échelle', image: '/images/profess3.jpg', tone: 'Sur mesure', price: 'Sur devis' },
-  { name: 'Pack clé en main', ref: 'PR-004', category: 'Professionnels', material: 'Forfait complet', dimensions: 'Sur mesure', image: '/images/profess4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Arche de Noël sur mesure', ref: 'PR-001', category: 'Accessoires', material: 'Boules et structure', dimensions: 'Sur mesure', image: '/images/profess1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
+  { name: 'Installation hôtellerie', ref: 'PR-002', category: 'Accessoires', material: 'Forfait clé en main', dimensions: 'À l’échelle', image: '/images/profess2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
+  { name: 'Décoration commerciale', ref: 'PR-003', category: 'Accessoires', material: 'Pack sur mesure', dimensions: 'À l’échelle', image: '/images/profess3.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Pack clé en main', ref: 'PR-004', category: 'Accessoires', material: 'Forfait complet', dimensions: 'Sur mesure', image: '/images/profess4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
 ]
-const categories = ['Cotillons', 'Sapins', 'Professionnels']
-const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Professionnels': 'Catalogue 3' }
-const catalogPdfs: Record<string, string> = { 'Cotillons': '/catalogue1.pdf', 'Sapins': '/catalogue2.pdf', 'Professionnels': '/catalogue3.pdf' }
+const categories = ['Cotillons', 'Sapins', 'Accessoires']
+const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Accessoires': 'Catalogue 3' }
+const catalogPdfs: Record<string, string> = { 'Cotillons': '/catalogue1.pdf', 'Sapins': '/catalogue2.pdf', 'Accessoires': '/catalogue3.pdf' }
 
 function App() {
   const [query, setQuery] = useState('')
@@ -38,7 +38,7 @@ function App() {
       <nav className={menuOpen ? 'open' : ''}>
         <a href="#catalogue" onClick={() => openCatalog('Cotillons')}>Cotillons</a>
         <a href="#catalogue" onClick={() => openCatalog('Sapins')}>Sapins</a>
-        <a href="#catalogue" onClick={() => openCatalog('Professionnels')}>Professionnels</a>
+        <a href="#catalogue" onClick={() => openCatalog('Accessoires')}>Accessoires</a>
         <a href="#contact">Contact</a>
       </nav>
       <div className="header-actions">
