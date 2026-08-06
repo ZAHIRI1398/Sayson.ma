@@ -19,10 +19,17 @@ const products: Product[] = [
 ]
 const categories = ['Cotillons', 'Sapins', 'Accessoires']
 const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
-const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Accessoires': 'Catalogue 3' }
+const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Accessoires': 'Catalogues' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
-const catalogueFiles: Record<string, string> = { 'Cotillons': 'catalogue1.pdf', 'Sapins': 'catalogue2.pdf', 'Accessoires': 'catalogue3.pdf' }
-const catalogPdfs: Record<string, string> = { 'Cotillons': `${catalogueBaseUrl}catalogue1.pdf`, 'Sapins': `${catalogueBaseUrl}catalogue2.pdf`, 'Accessoires': `${catalogueBaseUrl}catalogue3.pdf` }
+const catalogues: Record<string, { file: string; label: string }[]> = {
+  'Cotillons': [{ file: 'catalogue1.pdf', label: 'Télécharger le PDF' }],
+  'Sapins': [{ file: 'catalogue2.pdf', label: 'Télécharger le PDF' }],
+  'Accessoires': [
+    { file: 'catalogue3.pdf', label: 'Catalogue 3' },
+    { file: 'catalogue4.pdf', label: 'Catalogue 4' },
+  ],
+}
+const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
 
 function App() {
   const [query, setQuery] = useState('')
@@ -65,7 +72,7 @@ function App() {
           <p className="eyebrow">Le catalogue</p>
           <h2>{catalogTitles[activeCategory]}</h2>
         </div>
-        <a className="download" href={catalogPdfs[activeCategory]} download={catalogueFiles[activeCategory]}><ArrowDownToLine size={17}/> Télécharger le PDF</a>
+        <div className="download-group">{catalogues[activeCategory].map((cat) => <a key={cat.file} className="download" href={catalogPdfUrl(cat.file)} download={cat.file}><ArrowDownToLine size={17}/> {cat.label}</a>)}</div>
       </div>
       <div className="browse">
         <div className="categories">{categories.map((c) => <button key={c} className={activeCategory === c ? 'active' : ''} onClick={() => setActiveCategory(c)}>{c}</button>)}</div>
