@@ -19,7 +19,9 @@ const products: Product[] = [
 ]
 const categories = ['Cotillons', 'Sapins', 'Accessoires']
 const catalogTitles: Record<string, string> = { 'Cotillons': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'Accessoires': 'Catalogue 3' }
-const catalogPdfs: Record<string, string> = { 'Cotillons': '/catalogue1.pdf', 'Sapins': '/catalogue2.pdf', 'Accessoires': '/catalogue3.pdf' }
+const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
+const catalogueFiles: Record<string, string> = { 'Cotillons': 'catalogue1.pdf', 'Sapins': 'catalogue2.pdf', 'Accessoires': 'catalogue3.pdf' }
+const catalogPdfs: Record<string, string> = { 'Cotillons': `${catalogueBaseUrl}catalogue1.pdf`, 'Sapins': `${catalogueBaseUrl}catalogue2.pdf`, 'Accessoires': `${catalogueBaseUrl}catalogue3.pdf` }
 
 function App() {
   const [query, setQuery] = useState('')
@@ -55,7 +57,7 @@ function App() {
           <p className="eyebrow">Le catalogue</p>
           <h2>{catalogTitles[activeCategory]}</h2>
         </div>
-        <a className="download" href={catalogPdfs[activeCategory]} download={catalogPdfs[activeCategory].replace('/', '')}><ArrowDownToLine size={17}/> Télécharger le PDF</a>
+        <a className="download" href={catalogPdfs[activeCategory]} download={catalogueFiles[activeCategory]}><ArrowDownToLine size={17}/> Télécharger le PDF</a>
       </div>
       <div className="browse">
         <div className="categories">{categories.map((c) => <button key={c} className={activeCategory === c ? 'active' : ''} onClick={() => setActiveCategory(c)}>{c}</button>)}</div>
