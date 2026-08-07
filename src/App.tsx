@@ -12,7 +12,7 @@ const products: Product[] = [
   { name: 'Sapin blanc lumineux', ref: 'SA-002', category: 'Sapins', material: 'Mélange PE', dimensions: 'H 240 cm', image: '/images/sapin2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
   { name: 'Sapin doré impérial', ref: 'SA-003', category: 'Sapins', material: 'PVC', dimensions: 'H 300 cm', image: '/images/sapin3.jpg', tone: 'Or / champagne', price: 'Sur devis' },
   { name: 'Sapin décoré sur mesure', ref: 'SA-004', category: 'Sapins', material: 'PVC / PE', dimensions: 'H 250+ cm', image: '/images/sapin4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
-  { name: 'Arche de Noël sur mesure', ref: 'PR-001', category: 'cotillons', material: 'Boules et structure', dimensions: 'Sur mesure', image: '/images/profess1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
+  { name: 'Arche de Noël sur mesure', ref: 'PR-001', category: 'cotillons', material: 'Pack sur mesure', dimensions: 'À l’échelle', image: '/images/profess1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
   { name: 'Installation hôtellerie', ref: 'PR-002', category: 'cotillons', material: 'Forfait clé en main', dimensions: 'À l’échelle', image: '/images/profess2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
   { name: 'Décoration commerciale', ref: 'PR-003', category: 'cotillons', material: 'Pack sur mesure', dimensions: 'À l’échelle', image: '/images/profess3.jpg', tone: 'Sur mesure', price: 'Sur devis' },
   { name: 'Pack clé en main', ref: 'PR-004', category: 'cotillons', material: 'Forfait complet', dimensions: 'Sur mesure', image: '/images/profess4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
