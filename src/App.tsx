@@ -4,9 +4,9 @@ import './App.css'
 
 type Product = { name: string; ref: string; category: string; material: string; dimensions: string; image: string; tone: string; price: string }
 const products: Product[] = [
-  { name: 'Boules de Noël blanches', ref: 'CO-001', category: 'Boules et deco nouvel an', material: 'Verre', dimensions: 'Ø 4 à 20 cm', image: '/images/cotillons1.jpg', tone: 'Blanc', price: 'À partir de 3,50 €' },
-  { name: 'Boules de Noël rouge', ref: 'CO-002', category: 'Boules et deco nouvel an', material: 'Verre', dimensions: '6 à 20 cm — packs 12 à 50 pcs', image: '/images/cotillons2.jpg', tone: 'Rouge / bordeaux', price: 'À partir de 3,50 €' },
-  { name: 'Boules de Noël dorées', ref: 'CO-003', category: 'Boules et deco nouvel an', material: 'Verre', dimensions: 'Ø 6 à 20 cm', image: '/images/cottillon3.jpg', tone: 'Or / champagne', price: 'À partir de 12 €' },
+  { name: 'Boules de Noël blanches', ref: 'CO-001', category: 'Boules et deco nouvel an', material: 'Verre', dimensions: 'Ø 4 à 20 cm', image: '/images/cotillons1.jpg', tone: '', price: 'Sur devis' },
+  { name: 'Boules de Noël rouge', ref: 'CO-002', category: 'Boules et deco nouvel an', material: 'Verre', dimensions: '6 à 20 cm — packs 12 à 50 pcs', image: '/images/cotillons2.jpg', tone: 'Rouge / bordeaux', price: 'Sur devis' },
+  { name: 'Boules de Noël dorées', ref: 'CO-003', category: 'Boules et deco nouvel an', material: 'Verre', dimensions: 'Ø 6 à 20 cm', image: '/images/cottillon3.jpg', tone: 'Or / champagne', price: 'Sur devis ' },
   { name: 'Boules de Noël XXL', ref: 'CO-004', category: 'Boules et deco nouvel an', material: 'Verre / PVC', dimensions: 'Sur mesure', image: '/images/cotillons4.png', tone: 'Rouge shiny', price: 'Sur devis' },
   { name: 'Sapin premium naturel', ref: 'SA-001', category: 'Sapins', material: 'PVC premium', dimensions: 'H 210 cm', image: '/images/sapin1.jpg', tone: 'Vert naturel', price: 'Sur devis' },
   { name: 'Sapin blanc lumineux', ref: 'SA-002', category: 'Sapins', material: 'Mélange PE', dimensions: 'H 240 cm', image: '/images/sapin2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
