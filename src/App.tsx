@@ -38,9 +38,9 @@ const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
 
 const categoryVideos: Record<string, string> = {
   'Boules et deco nouvel an': '/Video1.mp4',
-  'Sapins': '/vidieo2.mp4',
-  'cotillons': '',
-  'Embalage': '',
+  'Sapins': '/video3.mp4',
+  'cotillons': '/vidieo2.mp4',
+  'Embalage': '/video4.mp4',
 }
 
 function CategoryVideo({ src, label }: { src: string; label: string }) {
