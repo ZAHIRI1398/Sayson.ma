@@ -10,6 +10,7 @@ const CATALOGUE_FILES: Record<string, string> = {
   '/catalogue2.pdf': 'catalogue2.pdf',
   '/catalogue3.pdf': 'catalogue3.pdf',
   '/catalogue4.pdf': 'catalogue4.pdf',
+  '/catalogue5.pdf': 'catalogue5.pdf',
 };
 
 export default {

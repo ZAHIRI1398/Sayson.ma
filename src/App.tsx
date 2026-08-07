@@ -16,10 +16,14 @@ const products: Product[] = [
   { name: 'Installation hôtellerie', ref: 'PR-002', category: 'cotillons', material: 'Forfait clé en main', dimensions: 'À l’échelle', image: '/images/profess2.jpg', tone: 'Blanc / or', price: 'Sur devis' },
   { name: 'Décoration commerciale', ref: 'PR-003', category: 'cotillons', material: 'Pack sur mesure', dimensions: 'À l’échelle', image: '/images/profess3.jpg', tone: 'Sur mesure', price: 'Sur devis' },
   { name: 'Pack clé en main', ref: 'PR-004', category: 'cotillons', material: 'Forfait complet', dimensions: 'Sur mesure', image: '/images/profess4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Emballage cadeau', ref: 'EM-001', category: 'Embalage', material: 'Carton / tissu', dimensions: 'Sur mesure', image: '/images/emb1.jpg', tone: 'Rouge / or', price: 'Sur devis' },
+  { name: 'Emballage cadeau premium', ref: 'EM-002', category: 'Embalage', material: 'Carton / tissu', dimensions: 'Sur mesure', image: '/images/emb2.jpg', tone: 'Or / blanc', price: 'Sur devis' },
+  { name: 'Emballage sur mesure', ref: 'EM-003', category: 'Embalage', material: 'Pack sur mesure', dimensions: 'Sur mesure', image: '/images/emb3.jpg', tone: 'Blanc / argent', price: 'Sur devis' },
+  { name: 'Pack emballage complet', ref: 'EM-004', category: 'Embalage', material: 'Pack complet', dimensions: 'Sur mesure', image: '/images/emb4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
 ]
-const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons']
+const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage']
 const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
-const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues' }
+const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
 const catalogues: Record<string, { file: string; label: string }[]> = {
   'Boules et deco nouvel an': [{ file: 'catalogue1.pdf', label: 'Télécharger le PDF' }],
@@ -28,8 +32,22 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
     { file: 'catalogue3.pdf', label: 'Catalogue 3' },
     { file: 'catalogue4.pdf', label: 'Catalogue 4' },
   ],
+  'Embalage': [{ file: 'catalogue5.pdf', label: 'Télécharger le PDF' }],
 }
 const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
+
+const categoryVideos: Record<string, string> = {
+  'Boules et deco nouvel an': '/Video1.mp4',
+  'Sapins': '/vidieo2.mp4',
+  'cotillons': '',
+  'Embalage': '',
+}
+
+function CategoryVideo({ src, label }: { src: string; label: string }) {
+  const [failed, setFailed] = useState(false)
+  if (!src || failed) return <div className="video-placeholder">Vidéo à venir — {label}</div>
+  return <video src={src} controls autoPlay muted loop playsInline onError={() => setFailed(true)} />
+}
 
 function App() {
   const [query, setQuery] = useState('')
@@ -56,6 +74,7 @@ function App() {
         <a href="#catalogue" onClick={() => openCatalog('Boules et deco nouvel an')}>Boules et deco nouvel an</a>
         <a href="#catalogue" onClick={() => openCatalog('Sapins')}>Sapins</a>
         <a href="#catalogue" onClick={() => openCatalog('cotillons')}>cotillons</a>
+        <a href="#catalogue" onClick={() => openCatalog('Embalage')}>Embalage</a>
         <a href="#contact">Contact</a>
       </nav>
       <div className="header-actions">
@@ -79,6 +98,10 @@ function App() {
         <div className="search-row"><label><Search size={18}/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Rechercher une référence, une matière…"/></label><button className={filterOpen ? 'filter active-filter' : 'filter'} onClick={() => setFilterOpen(!filterOpen)}><SlidersHorizontal size={17}/> Filtres</button></div>
       </div>
       {filterOpen && <div className="filter-panel"><span>Matériaux</span><button>Bois</button><button>Céramique</button><button>Minéral</button><button>Textile</button><span className="filter-note"><Check size={15}/> Disponible sous 4 à 6 semaines</span></div>}
+      <div className="category-video">
+        <p className="eyebrow">En vidéo</p>
+        <CategoryVideo src={categoryVideos[activeCategory]} label={activeCategory} />
+      </div>
       <div className="products">{filtered.map((p) => <article className="product" key={p.ref}><div className="product-image"><img src={p.image} alt={p.name}/><button aria-label="Ajouter aux favoris" onClick={() => toggleSaved(p.ref)} className={saved.includes(p.ref) ? 'hearted' : ''}><Heart size={18} fill={saved.includes(p.ref) ? 'currentColor' : 'none'}/></button><span>{p.tone}</span></div><div className="product-meta"><div><p className="reference">{p.ref} · {p.category}</p><h3>{p.name}</h3></div><p className="price">{p.price}</p></div><p className="spec">{p.material} <b>—</b> {p.dimensions}</p></article>)}</div>
       {filtered.length === 0 && <div className="empty"><X size={19}/><p>Aucune pièce ne correspond à votre recherche.</p></div>}
       <button className="all-products" onClick={() => { setActiveCategory('Boules et deco nouvel an'); setQuery('') }}>Voir tous les catalogues <ArrowRight size={16}/></button>
