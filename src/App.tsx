@@ -30,7 +30,7 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
   'Sapins': [{ file: 'catalogue2.pdf', label: 'Télécharger le PDF' }],
   'cotillons': [
     { file: 'catalogue3.pdf', label: 'Catalogue 3' },
-    { file: 'catalogue4.pdf', label: 'Catalogue 4' },
+    { file: 'catalogue4.pdf', label: 'Catalogue 4 Cotillons' },
   ],
   'Embalage': [{ file: 'catalogue5.pdf', label: 'Télécharger le PDF' }],
 }
