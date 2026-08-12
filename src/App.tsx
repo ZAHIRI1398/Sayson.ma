@@ -36,7 +36,7 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
     { file: 'catalogue4.pdf', label: 'Catalogue 4 Cotillons' },
   ],
   'Embalage': [{ file: 'catalogue5.pdf', label: 'Télécharger le PDF' }],
-  'Décoration professionnel': [{ file: 'catalogue6.pdf', label: 'Télécharger le PDF' }],
+  'Décoration professionnel': [{ file: 'catalogue3.pdf', label: 'Télécharger le PDF' }],
 }
 const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
 
