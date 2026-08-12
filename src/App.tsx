@@ -45,7 +45,7 @@ const categoryVideos: Record<string, string> = {
   'Sapins': '/video3.mp4',
   'cotillons': '/vidieo2.mp4',
   'Embalage': '/video4.mp4',
-  'Décoration professionnel': '',
+  'Décoration professionnel': '/Video5.mp4',
 }
 
 function CategoryVideo({ src, label }: { src: string; label: string }) {
