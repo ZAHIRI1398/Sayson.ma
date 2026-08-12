@@ -20,10 +20,14 @@ const products: Product[] = [
   { name: 'Emballage cadeau premium', ref: 'EM-002', category: 'Embalage', material: 'Carton / tissu', dimensions: 'Sur mesure', image: '/images/emb2.jpg', tone: 'Or / blanc', price: 'Sur devis' },
   { name: 'Emballage sur mesure', ref: 'EM-003', category: 'Embalage', material: 'Pack sur mesure', dimensions: 'Sur mesure', image: '/images/emb3.jpg', tone: 'Blanc / argent', price: 'Sur devis' },
   { name: 'Pack emballage complet', ref: 'EM-004', category: 'Embalage', material: 'Pack complet', dimensions: 'Sur mesure', image: '/images/emb4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration professionnelle 1', ref: 'DE-001', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec1.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration professionnelle 2', ref: 'DE-002', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec2.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration professionnelle 3', ref: 'DE-003', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec3.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration professionnelle 4', ref: 'DE-004', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
 ]
-const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage']
+const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage', 'Décoration professionnel']
 const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
-const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5' }
+const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogue 6' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
 const catalogues: Record<string, { file: string; label: string }[]> = {
   'Boules et deco nouvel an': [{ file: 'catalogue1.pdf', label: 'Télécharger Boules et deco nouvel an  PDF' }],
@@ -33,6 +37,7 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
     { file: 'catalogue4.pdf', label: 'Catalogue 4 Cotillons' },
   ],
   'Embalage': [{ file: 'catalogue5.pdf', label: 'Télécharger le PDF' }],
+  'Décoration professionnel': [{ file: 'catalogue6.pdf', label: 'Télécharger le PDF' }],
 }
 const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
 
@@ -41,6 +46,7 @@ const categoryVideos: Record<string, string> = {
   'Sapins': '/video3.mp4',
   'cotillons': '/vidieo2.mp4',
   'Embalage': '/video4.mp4',
+  'Décoration professionnel': '',
 }
 
 function CategoryVideo({ src, label }: { src: string; label: string }) {
@@ -75,6 +81,7 @@ function App() {
         <a href="#catalogue" onClick={() => openCatalog('Sapins')}>Sapins</a>
         <a href="#catalogue" onClick={() => openCatalog('cotillons')}>cotillons</a>
         <a href="#catalogue" onClick={() => openCatalog('Embalage')}>Embalage</a>
+        <a href="#catalogue" onClick={() => openCatalog('Décoration professionnel')}>Décoration professionnel</a>
         <a href="#contact">Contact</a>
       </nav>
       <div className="header-actions">
