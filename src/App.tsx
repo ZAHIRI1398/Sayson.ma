@@ -33,7 +33,6 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
   'Boules et deco nouvel an': [{ file: 'catalogue1.pdf', label: 'Télécharger Boules et deco nouvel an  PDF' }],
   'Sapins': [{ file: 'catalogue2.pdf', label: 'Télécharger le PDF' }],
   'cotillons': [
-    { file: 'catalogue3.pdf', label: 'Catalogue 3' },
     { file: 'catalogue4.pdf', label: 'Catalogue 4 Cotillons' },
   ],
   'Embalage': [{ file: 'catalogue5.pdf', label: 'Télécharger le PDF' }],
