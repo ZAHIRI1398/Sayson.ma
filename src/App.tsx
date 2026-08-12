@@ -27,7 +27,7 @@ const products: Product[] = [
 ]
 const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage', 'Décoration professionnel']
 const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
-const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogue 6' }
+const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogue 3' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
 const catalogues: Record<string, { file: string; label: string }[]> = {
   'Boules et deco nouvel an': [{ file: 'catalogue1.pdf', label: 'Télécharger Boules et deco nouvel an  PDF' }],
