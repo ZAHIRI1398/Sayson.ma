@@ -12,4 +12,4 @@
 
 .download-group{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}@media(max-width:520px){.download-group{width:100%;justify-content:flex-start}}
 
-.category-video{margin-top:30px}.category-video .eyebrow{margin-bottom:14px}.category-video video{width:100%;height:auto;max-height:420px;object-fit:cover;display:block;background:#141310}.video-placeholder{display:grid;place-items:center;height:220px;background:#ddd7cc;color:#6a675f;font-size:13px}
+.category-video{margin-top:30px}.category-video .eyebrow{margin-bottom:14px}.category-video video{width:100%;height:auto;max-height:640px;object-fit:contain;display:block;background:#141310}.video-placeholder{display:grid;place-items:center;height:220px;background:#ddd7cc;color:#6a675f;font-size:13px}
