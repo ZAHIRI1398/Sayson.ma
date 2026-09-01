@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { ArrowDownToLine, ArrowRight, Check, ChevronDown, ChevronLeft, ChevronRight, Heart, Menu, Search, SlidersHorizontal, X } from 'lucide-react'
+import { useMemo, useRef, useState } from 'react'
+import { ArrowDownToLine, ArrowRight, Check, ChevronDown, ChevronLeft, ChevronRight, Heart, Menu, Play, Search, SlidersHorizontal, X } from 'lucide-react'
 import './App.css'
 
 type Product = { name: string; ref: string; category: string; material: string; dimensions: string; image: string; tone: string; price: string }
@@ -50,8 +50,19 @@ const categoryVideos: Record<string, string> = {
 
 function CategoryVideo({ src, label }: { src: string; label: string }) {
   const [failed, setFailed] = useState(false)
+  const [playing, setPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
   if (!src || failed) return <div className="video-placeholder">Vidéo à venir — {label}</div>
-  return <video src={src} controls autoPlay muted loop playsInline onError={() => setFailed(true)} />
+  const handlePlay = () => {
+    const v = videoRef.current
+    if (!v) return
+    if (playing) { v.pause(); setPlaying(false) }
+    else { v.play().then(() => setPlaying(true)).catch(() => {}) }
+  }
+  return <div className="video-wrapper">
+    <video ref={videoRef} src={src} controls={false} loop muted playsInline onClick={handlePlay} onError={() => setFailed(true)} />
+    <button className={`video-play-btn${playing ? ' hidden' : ''}`} onClick={handlePlay} aria-label="Lecture"><Play size={26} fill="currentColor" /></button>
+  </div>
 }
 
 function App() {
@@ -76,11 +87,11 @@ function App() {
     <header className="topbar">
       <a className="brand" href="#accueil"><img src="/images/logo.png" alt="SAYZON" /><span className="brand-name">SAYZON <span>Design-Decor</span></span></a>
       <nav className={menuOpen ? 'open' : ''}>
-        <a href="#catalogue" onClick={() => openCatalog('Boules et deco nouvel an')}>Boules et deco nouvel an</a>
-        <a href="#catalogue" onClick={() => openCatalog('Sapins')}>Sapins</a>
-        <a href="#catalogue" onClick={() => openCatalog('cotillons')}>cotillons</a>
-        <a href="#catalogue" onClick={() => openCatalog('Embalage')}>Embalage</a>
-        <a href="#catalogue" onClick={() => openCatalog('Décoration professionnel')}>Décoration professionnel</a>
+        <a href="#catalogue" className={activeCategory === 'Boules et deco nouvel an' ? 'active-nav' : ''} onClick={() => openCatalog('Boules et deco nouvel an')}>Boules et deco nouvel an</a>
+        <a href="#catalogue" className={activeCategory === 'Sapins' ? 'active-nav' : ''} onClick={() => openCatalog('Sapins')}>Sapins</a>
+        <a href="#catalogue" className={activeCategory === 'cotillons' ? 'active-nav' : ''} onClick={() => openCatalog('cotillons')}>cotillons</a>
+        <a href="#catalogue" className={activeCategory === 'Embalage' ? 'active-nav' : ''} onClick={() => openCatalog('Embalage')}>Embalage</a>
+        <a href="#catalogue" className={activeCategory === 'Décoration professionnel' ? 'active-nav' : ''} onClick={() => openCatalog('Décoration professionnel')}>Décoration professionnel</a>
         <a href="#contact">Contact</a>
       </nav>
       <div className="header-actions">
