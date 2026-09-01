@@ -49,12 +49,10 @@ export default {
       return new Response(object.body, { headers });
     }
 
-    // --- Videos (stream with range support) ---
+    // --- Videos (stream from R2) ---
     const videoKey = VIDEO_FILES[url.pathname];
     if (videoKey) {
-      const rangeHeader = request.headers.get('range');
-      const options = rangeHeader ? { range: parseRange(rangeHeader) } : {};
-      const object = await env.CATALOGUES.get(videoKey, options);
+      const object = await env.CATALOGUES.get(videoKey);
       if (!object || !object.body) {
         return new Response('Vidéo non trouvée dans R2', { status: 404 });
       }
@@ -64,15 +62,6 @@ export default {
       headers.set('Content-Type', 'video/mp4');
       headers.set('Accept-Ranges', 'bytes');
       headers.set('Access-Control-Allow-Origin', '*');
-
-      if (rangeHeader && object.size) {
-        const range = parseRange(rangeHeader);
-        const start = range.offset ?? 0;
-        const end = start + (object.size - 1);
-        headers.set('Content-Range', `bytes ${start}-${end}/${object.size}`);
-        headers.set('Content-Length', (object.size).toString());
-        return new Response(object.body, { status: 206, headers });
-      }
 
       if (object.size) {
         headers.set('Content-Length', object.size.toString());
@@ -88,11 +77,3 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
-
-function parseRange(range: string): { offset: number; length?: number } {
-  const match = /bytes=(\d+)-(\d*)/.exec(range);
-  if (!match) return { offset: 0 };
-  const offset = parseInt(match[1], 10);
-  const end = match[2] ? parseInt(match[2], 10) : undefined;
-  return { offset, length: end !== undefined ? end - offset + 1 : undefined };
-}

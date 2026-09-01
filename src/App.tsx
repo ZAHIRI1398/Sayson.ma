@@ -60,7 +60,7 @@ function CategoryVideo({ src, label }: { src: string; label: string }) {
     else { v.play().then(() => setPlaying(true)).catch(() => {}) }
   }
   return <div className="video-wrapper">
-    <video ref={videoRef} src={src} controls={false} loop muted playsInline onClick={handlePlay} onError={() => setFailed(true)} />
+    <video ref={videoRef} src={src} controls={false} loop muted playsInline preload="metadata" onClick={handlePlay} onError={() => setFailed(true)} />
     <button className={`video-play-btn${playing ? ' hidden' : ''}`} onClick={handlePlay} aria-label="Lecture"><Play size={26} fill="currentColor" /></button>
   </div>
 }
