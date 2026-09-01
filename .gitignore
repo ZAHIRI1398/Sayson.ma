@@ -27,3 +27,6 @@ dist-ssr
 
 # Large PDF catalogues (keep local, host elsewhere)
 public/catalogue*.pdf
+
+# Wrangler local state
+.wrangler
