@@ -87,12 +87,12 @@ function App() {
     <header className="topbar">
       <a className="brand" href="#accueil"><img src="/images/logo.png" alt="SAYZON" /><span className="brand-name">SAYZON <span>Design-Decor</span></span></a>
       <nav className={menuOpen ? 'open' : ''}>
-        <a href="#catalogue" className={activeCategory === 'Boules et deco nouvel an' ? 'active-nav' : ''} onClick={() => openCatalog('Boules et deco nouvel an')}>Boules et deco nouvel an</a>
-        <a href="#catalogue" className={activeCategory === 'Sapins' ? 'active-nav' : ''} onClick={() => openCatalog('Sapins')}>Sapins</a>
-        <a href="#catalogue" className={activeCategory === 'cotillons' ? 'active-nav' : ''} onClick={() => openCatalog('cotillons')}>cotillons</a>
-        <a href="#catalogue" className={activeCategory === 'Embalage' ? 'active-nav' : ''} onClick={() => openCatalog('Embalage')}>Embalage</a>
-        <a href="#catalogue" className={activeCategory === 'Décoration professionnel' ? 'active-nav' : ''} onClick={() => openCatalog('Décoration professionnel')}>Décoration professionnel</a>
-        <a href="#contact">Contact</a>
+        <a href="#catalogue" className={`nav-tag nav-red${activeCategory === 'Boules et deco nouvel an' ? ' active-nav' : ''}`} onClick={() => openCatalog('Boules et deco nouvel an')}>Boules et deco nouvel an</a>
+        <a href="#catalogue" className={`nav-tag nav-green${activeCategory === 'Sapins' ? ' active-nav' : ''}`} onClick={() => openCatalog('Sapins')}>Sapins</a>
+        <a href="#catalogue" className={`nav-tag nav-gold${activeCategory === 'cotillons' ? ' active-nav' : ''}`} onClick={() => openCatalog('cotillons')}>cotillons</a>
+        <a href="#catalogue" className={`nav-tag nav-blue${activeCategory === 'Embalage' ? ' active-nav' : ''}`} onClick={() => openCatalog('Embalage')}>Embalage</a>
+        <a href="#catalogue" className={`nav-tag nav-purple${activeCategory === 'Décoration professionnel' ? ' active-nav' : ''}`} onClick={() => openCatalog('Décoration professionnel')}>Décoration professionnel</a>
+        <a href="#contact" className="nav-tag nav-dark">Contact</a>
       </nav>
       <div className="header-actions">
         <button className="language">FR <ChevronDown size={13}/></button>
