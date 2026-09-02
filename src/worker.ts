@@ -11,6 +11,10 @@ const CATALOGUE_FILES: Record<string, string> = {
   '/catalogue3.pdf': 'catalogue3.pdf',
   '/catalogue4.pdf': 'catalogue4.pdf',
   '/catalogue5.pdf': 'catalogue5.pdf',
+  '/catalogue6.pdf': 'catalogue6.pdf',
+  '/catalogue7.pdf': 'catalogue7.pdf',
+  '/catalogue8.pdf': 'catalogue8.pdf',
+  '/catalogue9.pdf': 'catalogue9.pdf',
 };
 
 const VIDEO_FILES: Record<string, string> = {
@@ -77,3 +81,11 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
+
+function parseRange(range: string): { offset: number; length?: number } {
+  const match = /bytes=(\d+)-(\d*)/.exec(range);
+  if (!match) return { offset: 0 };
+  const offset = parseInt(match[1], 10);
+  const end = match[2] ? parseInt(match[2], 10) : undefined;
+  return { offset, length: end !== undefined ? end - offset + 1 : undefined };
+}

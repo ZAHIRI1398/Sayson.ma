@@ -27,7 +27,7 @@ const products: Product[] = [
 ]
 const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage', 'Décoration professionnel']
 const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
-const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogue 3' }
+const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogues Décoration' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
 const catalogues: Record<string, { file: string; label: string }[]> = {
   'Boules et deco nouvel an': [{ file: 'catalogue1.pdf', label: 'Télécharger Boules et deco nouvel an  PDF' }],
@@ -36,7 +36,13 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
     { file: 'catalogue4.pdf', label: 'Catalogue 4 Cotillons' },
   ],
   'Embalage': [{ file: 'catalogue5.pdf', label: 'Télécharger le PDF' }],
-  'Décoration professionnel': [{ file: 'catalogue3.pdf', label: 'Télécharger le PDF' }],
+  'Décoration professionnel': [
+    { file: 'catalogue3.pdf', label: 'Catalogue 3' },
+    { file: 'catalogue6.pdf', label: 'Catalogue 6' },
+    { file: 'catalogue7.pdf', label: 'Catalogue 7' },
+    { file: 'catalogue8.pdf', label: 'Catalogue 8' },
+    { file: 'catalogue9.pdf', label: 'Catalogue 9' },
+  ],
 }
 const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
 
