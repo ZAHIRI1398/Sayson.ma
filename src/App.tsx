@@ -26,10 +26,16 @@ const products: Product[] = [
   { name: 'Décoration professionnelle 4', ref: 'DE-004', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
   { name: 'Cadeaux Noël enfants 1', ref: 'NO-001', category: 'Cadeaux Noël enfants', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/hallow1.jpeg', tone: 'Sur mesure', price: 'Sur devis' },
   { name: 'Cadeaux Noël enfants 2', ref: 'NO-002', category: 'Cadeaux Noël enfants', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/hallow2.jpeg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Cadeaux Noël enfants 3', ref: 'NO-003', category: 'Cadeaux Noël enfants', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/hallow3.jpeg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Cadeaux Noël enfants 4', ref: 'NO-004', category: 'Cadeaux Noël enfants', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/hallow4.jpeg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration Halloween 1', ref: 'HA-001', category: 'Catalogue Halloween', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/ween1.png', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration Halloween 2', ref: 'HA-002', category: 'Catalogue Halloween', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/ween2.png', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration Halloween 3', ref: 'HA-003', category: 'Catalogue Halloween', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/ween3.png', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Décoration Halloween 4', ref: 'HA-004', category: 'Catalogue Halloween', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/ween4.png', tone: 'Sur mesure', price: 'Sur devis' },
 ]
-const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage', 'Décoration professionnel', 'Cadeaux Noël enfants']
+const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage', 'Décoration professionnel', 'Cadeaux Noël enfants', 'Catalogue Halloween']
 const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
-const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogues Décoration', 'Cadeaux Noël enfants': 'Catalogue 10' }
+const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogues Décoration', 'Cadeaux Noël enfants': 'Catalogue 10', 'Catalogue Halloween': 'Catalogue 11' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
 const catalogues: Record<string, { file: string; label: string }[]> = {
   'Boules et deco nouvel an': [{ file: 'catalogue1.pdf', label: 'Télécharger Boules et deco nouvel an  PDF' }],
@@ -45,7 +51,8 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
     { file: 'catalogue8.pdf', label: 'Catalogue 8' },
     { file: 'catalogue9.pdf', label: 'Catalogue 9' },
   ],
-  'Cadeaux Noël enfants': [{ file: 'catalogue10.pdf', label: 'Catalogue 10' }],
+  'Cadeaux Noël enfants': [{ file: 'catalogue10.pdf', label: 'Cadeaux Noël enfants' }],
+  'Catalogue Halloween': [{ file: 'catalogue11.pdf', label: 'Catalogue Halloween' }],
 }
 const catalogPdfUrl = (file: string) => `/${file}`
 
@@ -56,6 +63,7 @@ const categoryVideos: Record<string, string> = {
   'Embalage': '/video4.mp4',
   'Décoration professionnel': '/Video5.mp4',
   'Cadeaux Noël enfants': '/video10.mp4',
+  'Catalogue Halloween': '/video11.mp4',
 }
 
 function CategoryVideo({ src, label }: { src: string; label: string }) {
@@ -103,6 +111,7 @@ function App() {
         <a href="#catalogue" className={`nav-tag nav-blue${activeCategory === 'Embalage' ? ' active-nav' : ''}`} onClick={() => openCatalog('Embalage')}>Embalage</a>
         <a href="#catalogue" className={`nav-tag nav-purple${activeCategory === 'Décoration professionnel' ? ' active-nav' : ''}`} onClick={() => openCatalog('Décoration professionnel')}>Décoration professionnel</a>
         <a href="#catalogue" className={`nav-tag nav-orange${activeCategory === 'Cadeaux Noël enfants' ? ' active-nav' : ''}`} onClick={() => openCatalog('Cadeaux Noël enfants')}>Cadeaux Noël enfants</a>
+        <a href="#catalogue" className={`nav-tag nav-black${activeCategory === 'Catalogue Halloween' ? ' active-nav' : ''}`} onClick={() => openCatalog('Catalogue Halloween')}>Catalogue Halloween</a>
         <a href="#contact" className="nav-tag nav-dark">Contact</a>
       </nav>
       <div className="header-actions">
