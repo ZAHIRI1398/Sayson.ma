@@ -24,10 +24,12 @@ const products: Product[] = [
   { name: 'Décoration professionnelle 2', ref: 'DE-002', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec2.jpg', tone: 'Sur mesure', price: 'Sur devis' },
   { name: 'Décoration professionnelle 3', ref: 'DE-003', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec3.jpg', tone: 'Sur mesure', price: 'Sur devis' },
   { name: 'Décoration professionnelle 4', ref: 'DE-004', category: 'Décoration professionnel', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/dec4.jpg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Cadeaux Noël enfants 1', ref: 'NO-001', category: 'Cadeaux Noël enfants', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/hallow1.jpeg', tone: 'Sur mesure', price: 'Sur devis' },
+  { name: 'Cadeaux Noël enfants 2', ref: 'NO-002', category: 'Cadeaux Noël enfants', material: 'Sur mesure', dimensions: 'Sur mesure', image: '/images/hallow2.jpeg', tone: 'Sur mesure', price: 'Sur devis' },
 ]
-const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage', 'Décoration professionnel']
+const categories = ['Boules et deco nouvel an', 'Sapins', 'cotillons', 'Embalage', 'Décoration professionnel', 'Cadeaux Noël enfants']
 const realisations = ['/images/proj1.jpg', '/images/proj2.jpg', '/images/proj3.jpg', '/images/proj4.jpg']
-const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogues Décoration' }
+const catalogTitles: Record<string, string> = { 'Boules et deco nouvel an': 'Catalogue 1', 'Sapins': 'Catalogue 2', 'cotillons': 'Catalogues', 'Embalage': 'Catalogue 5', 'Décoration professionnel': 'Catalogues Décoration', 'Cadeaux Noël enfants': 'Catalogue 10' }
 const catalogueBaseUrl: string = (import.meta as any).env.VITE_CATALOGUE_BASE_URL || ''
 const catalogues: Record<string, { file: string; label: string }[]> = {
   'Boules et deco nouvel an': [{ file: 'catalogue1.pdf', label: 'Télécharger Boules et deco nouvel an  PDF' }],
@@ -43,6 +45,7 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
     { file: 'catalogue8.pdf', label: 'Catalogue 8' },
     { file: 'catalogue9.pdf', label: 'Catalogue 9' },
   ],
+  'Cadeaux Noël enfants': [{ file: 'catalogue10.pdf', label: 'Catalogue 10' }],
 }
 const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
 
@@ -52,6 +55,7 @@ const categoryVideos: Record<string, string> = {
   'cotillons': '/vidieo2.mp4',
   'Embalage': '/video4.mp4',
   'Décoration professionnel': '/Video5.mp4',
+  'Cadeaux Noël enfants': '/video10.mp4',
 }
 
 function CategoryVideo({ src, label }: { src: string; label: string }) {
@@ -98,6 +102,7 @@ function App() {
         <a href="#catalogue" className={`nav-tag nav-gold${activeCategory === 'cotillons' ? ' active-nav' : ''}`} onClick={() => openCatalog('cotillons')}>cotillons</a>
         <a href="#catalogue" className={`nav-tag nav-blue${activeCategory === 'Embalage' ? ' active-nav' : ''}`} onClick={() => openCatalog('Embalage')}>Embalage</a>
         <a href="#catalogue" className={`nav-tag nav-purple${activeCategory === 'Décoration professionnel' ? ' active-nav' : ''}`} onClick={() => openCatalog('Décoration professionnel')}>Décoration professionnel</a>
+        <a href="#catalogue" className={`nav-tag nav-orange${activeCategory === 'Cadeaux Noël enfants' ? ' active-nav' : ''}`} onClick={() => openCatalog('Cadeaux Noël enfants')}>Cadeaux Noël enfants</a>
         <a href="#contact" className="nav-tag nav-dark">Contact</a>
       </nav>
       <div className="header-actions">
