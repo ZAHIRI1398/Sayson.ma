@@ -47,7 +47,7 @@ const catalogues: Record<string, { file: string; label: string }[]> = {
   ],
   'Cadeaux Noël enfants': [{ file: 'catalogue10.pdf', label: 'Catalogue 10' }],
 }
-const catalogPdfUrl = (file: string) => `${catalogueBaseUrl}${file}`
+const catalogPdfUrl = (file: string) => `/${file}`
 
 const categoryVideos: Record<string, string> = {
   'Boules et deco nouvel an': '/Video1.mp4',

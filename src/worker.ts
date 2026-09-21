@@ -15,6 +15,7 @@ const CATALOGUE_FILES: Record<string, string> = {
   '/catalogue7.pdf': 'catalogue7.pdf',
   '/catalogue8.pdf': 'catalogue8.pdf',
   '/catalogue9.pdf': 'catalogue9.pdf',
+  '/catalogue10.pdf': 'catalogue10.pdf',
 };
 
 const VIDEO_FILES: Record<string, string> = {
